@@ -1,0 +1,5 @@
+.mainLayout {
+  padding: var(--padding-screen);
+  max-width: calc(var(--max-usable-screen-width) + (var(--padding-screen) * 2));
+  margin: 0 auto;
+}

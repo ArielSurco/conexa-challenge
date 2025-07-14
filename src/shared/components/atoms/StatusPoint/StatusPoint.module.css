@@ -1,0 +1,10 @@
+.statusPoint {
+  --status-point-size: 8px;
+  --status-point-color: var(--color-status-point);
+
+  width: var(--status-point-size);
+  height: var(--status-point-size);
+  border-radius: 50%;
+  background-color: var(--status-point-color);
+  display: inline-block;
+}
