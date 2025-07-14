@@ -1,5 +1,6 @@
 import { Character } from '@/characters/types/Character'
 import { StatusPoint } from '@/shared/components/atoms/StatusPoint/StatusPoint'
+import { capitalize } from '@/shared/utils/capitalize'
 import Image from 'next/image'
 import styles from './CharacterPreviewCard.module.css'
 
@@ -7,10 +8,10 @@ interface CharacterPreviewCardProps {
   character: Character
 }
 
-const statusPointColors: Record<Character['status'], string> = {
-  Alive: 'green',
-  Dead: 'red',
-  unknown: 'gray',
+export const statusPointColors: Record<Character['status'], string> = {
+  Alive: '#00ff9d',
+  Dead: '#ff005d',
+  unknown: '#cccccc',
 }
 
 export const CharacterPreviewCard = ({ character }: CharacterPreviewCardProps) => {
@@ -24,14 +25,14 @@ export const CharacterPreviewCard = ({ character }: CharacterPreviewCardProps) =
         className={styles.characterImage}
       />
       <div className={styles.characterInfo}>
-        <h3 className={styles.characterInfo_name}>{character.name}</h3>
+        <h3 className={styles.characterInfo_name}>{capitalize(character.name)}</h3>
         <div className={styles.characterInfo_description}>
           <p className={styles.characterInfo_description__status}>
             <StatusPoint color={statusPointColors[character.status]} size='12px' />
-            {character.status}
+            {capitalize(character.status)}
           </p>
           <span>-</span>
-          <p>{character.species}</p>
+          <p>{capitalize(character.species)}</p>
         </div>
       </div>
     </article>
