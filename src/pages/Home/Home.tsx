@@ -3,7 +3,7 @@ import { getAllCharacters } from '@/characters/services/getAllCharacters'
 
 import styles from './Home.module.css'
 
-export function Home() {
+export default async function Home() {
   const charactersResponse = await getAllCharacters()
 
   return (
