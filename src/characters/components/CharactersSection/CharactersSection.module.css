@@ -1,0 +1,6 @@
+.characterSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--gap-md);
+  min-width: 320px;
+}
