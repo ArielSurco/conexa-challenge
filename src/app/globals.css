@@ -1,6 +1,10 @@
 :root {
   --radius-md: 12px;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --padding-screen: 24px;
+  --max-usable-screen-width: 1440px;
+  --gap-md: 16px;
+
   --color-focus-outline: #00ff9d;
 
   --color-surface: #f4f4f4;
@@ -39,8 +43,8 @@ body {
 }
 
 body {
-  background-color: var(--surface);
-  color: var(--on-surface);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

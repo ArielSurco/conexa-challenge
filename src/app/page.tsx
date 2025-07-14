@@ -1,7 +1,3 @@
-export default function Home() {
-  return (
-    <main>
-      <h1>Conexa Challenge</h1>
-    </main>
-  )
-}
+import { Home } from '@/pages/Home/Home'
+
+export default Home
