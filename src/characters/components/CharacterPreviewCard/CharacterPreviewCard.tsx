@@ -1,12 +1,14 @@
 import Image from 'next/image'
+import { type ComponentProps } from 'react'
 
 import { type Character } from '@/characters/types/Character'
 import { StatusPoint } from '@/shared/components/atoms/StatusPoint/StatusPoint'
 import { capitalize } from '@/shared/utils/capitalize'
+import { cn } from '@/shared/utils/cn'
 
 import styles from './CharacterPreviewCard.module.css'
 
-interface CharacterPreviewCardProps {
+interface CharacterPreviewCardProps extends ComponentProps<'article'> {
   character: Character
 }
 
@@ -16,9 +18,13 @@ export const statusPointColors: Record<Character['status'], string> = {
   unknown: '#cccccc',
 }
 
-export function CharacterPreviewCard({ character }: CharacterPreviewCardProps) {
+export function CharacterPreviewCard({
+  character,
+  className,
+  ...props
+}: CharacterPreviewCardProps) {
   return (
-    <article className={styles.characterCard}>
+    <article className={cn(styles.characterCard, className)} {...props}>
       <Image
         alt={character.name}
         className={styles.characterImage}
