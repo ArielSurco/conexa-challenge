@@ -1,7 +1,9 @@
-import { Character } from '@/characters/types/Character'
+import Image from 'next/image'
+
+import { type Character } from '@/characters/types/Character'
 import { StatusPoint } from '@/shared/components/atoms/StatusPoint/StatusPoint'
 import { capitalize } from '@/shared/utils/capitalize'
-import Image from 'next/image'
+
 import styles from './CharacterPreviewCard.module.css'
 
 interface CharacterPreviewCardProps {
@@ -14,15 +16,15 @@ export const statusPointColors: Record<Character['status'], string> = {
   unknown: '#cccccc',
 }
 
-export const CharacterPreviewCard = ({ character }: CharacterPreviewCardProps) => {
+export function CharacterPreviewCard({ character }: CharacterPreviewCardProps) {
   return (
     <article className={styles.characterCard}>
       <Image
-        src={character.image}
         alt={character.name}
-        width={200}
-        height={200}
         className={styles.characterImage}
+        height={200}
+        src={character.image}
+        width={200}
       />
       <div className={styles.characterInfo}>
         <h3 className={styles.characterInfo_name}>{capitalize(character.name)}</h3>

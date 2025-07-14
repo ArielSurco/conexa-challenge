@@ -1,10 +1,10 @@
 import { getAllCharactersMockResponse } from '../serviceMocks/getAllCharactersMockResponse'
-import { Character } from '../types/Character'
+import { type Character } from '../types/Character'
 
 interface GetAllCharactersInfo {
   count: number
-  pages: number
   next: string | null
+  pages: number
   prev: string | null
 }
 

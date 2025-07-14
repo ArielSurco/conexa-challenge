@@ -1,15 +1,16 @@
-import { CSSProperties } from 'react'
+import { type CSSProperties } from 'react'
+
 import styles from './StatusPoint.module.css'
 
 interface StatusPointProps {
-  size?: `${number}px`
   color?: string
+  size?: `${number}px`
 }
 
-export const StatusPoint = ({
+export function StatusPoint({
   size = '8px',
   color = 'var(--color-status-point)',
-}: StatusPointProps) => {
+}: StatusPointProps) {
   return (
     <span
       className={styles.statusPoint}

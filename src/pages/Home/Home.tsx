@@ -1,8 +1,9 @@
 import { CharactersSection } from '@/characters/components/CharactersSection/CharactersSection'
 import { getAllCharacters } from '@/characters/services/getAllCharacters'
+
 import styles from './Home.module.css'
 
-export const Home = async () => {
+export function Home() {
   const charactersResponse = await getAllCharacters()
 
   return (

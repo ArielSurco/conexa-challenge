@@ -1,4 +1,4 @@
-import { GetAllCharactersResponse } from '../services/getAllCharacters'
+import { type GetAllCharactersResponse } from '../services/getAllCharacters'
 
 export const getAllCharactersMockResponse: GetAllCharactersResponse = {
   info: {

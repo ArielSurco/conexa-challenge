@@ -1,7 +1,9 @@
-import { mockCharacter } from '@/characters/testMocks/characterMock'
-import { Character } from '@/characters/types/Character'
-import { capitalize } from '@/shared/utils/capitalize'
 import { render, screen } from '@testing-library/react'
+
+import { mockCharacter } from '@/characters/testMocks/characterMock'
+import { type Character } from '@/characters/types/Character'
+import { capitalize } from '@/shared/utils/capitalize'
+
 import { CharacterPreviewCard } from './CharacterPreviewCard'
 
 describe('CharactersPreviewCard', () => {
