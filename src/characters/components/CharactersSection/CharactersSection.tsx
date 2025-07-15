@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { type ComponentProps, useEffect, useState } from 'react'
 
 import { useCachedCharacters } from '@/characters/context/CachedCharactersContext/CachedCharactersContext'
 import { type Character } from '@/characters/types/Character'
 import { Button } from '@/shared/components/atoms/Button/Button'
+import { Title } from '@/shared/components/atoms/Title/Title'
 import { Pagination } from '@/shared/components/molecules/Pagination/Pagination'
 import { cn } from '@/shared/utils/cn'
 
@@ -12,7 +13,7 @@ import { CharacterPreviewCard } from '../CharacterPreviewCard/CharacterPreviewCa
 
 import styles from './CharactersSection.module.css'
 
-interface CharactersSectionProps {
+interface CharactersSectionProps extends Pick<ComponentProps<'section'>, 'id'> {
   disabledCharacterIds?: Character['id'][]
   onSelectCharacter: (character: Character) => void
   selectedCharacterId: Character['id'] | null
@@ -34,6 +35,7 @@ export function CharactersSection({
   onSelectCharacter,
   disabledCharacterIds = [],
   title,
+  id,
 }: CharactersSectionProps) {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [characters, setCharacters] = useState<Character[]>([])
@@ -62,8 +64,10 @@ export function CharactersSection({
   }, [])
 
   return (
-    <section className={styles.charactersSection}>
-      <h2>{title}</h2>
+    <section className={styles.charactersSection} id={id}>
+      <Title fontSize='1.5rem' headingLevel='h2'>
+        {title}
+      </Title>
       <div className={styles.charactersList}>
         {characters.map((character) => (
           <Button

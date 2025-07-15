@@ -1,22 +1,25 @@
+import { type ComponentProps } from 'react'
+
 import { type Episode } from '@/episodes/types/Episode'
-import { Card } from '@/shared/components/atoms/Card/Card'
+import { Title } from '@/shared/components/atoms/Title/Title'
+
+import { EpisodeCard } from '../EpisodeCard/EpisodeCard'
 
 import styles from './EpisodesList.module.css'
 
-interface EpisodesListProps {
+interface EpisodesListProps extends Pick<ComponentProps<'section'>, 'id'> {
   episodes: Episode[]
   title: string
 }
 
-export const EpisodesList = ({ title, episodes }: EpisodesListProps) => {
+export const EpisodesList = ({ title, episodes, id }: EpisodesListProps) => {
   return (
-    <section className={styles.episodesList}>
-      <h2 className={styles.episodesListTitle}>{title}</h2>
+    <section className={styles.episodesList} id={id}>
+      <Title fontSize='1.5rem' headingLevel='h2'>
+        {title}
+      </Title>
       {episodes.map((episode) => (
-        <Card key={episode.id}>
-          <h3>{episode.name}</h3>
-          <p>{episode.air_date}</p>
-        </Card>
+        <EpisodeCard episode={episode} key={episode.id} />
       ))}
     </section>
   )
