@@ -55,6 +55,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
   return (
     <div className={styles.pagination}>
       <Button
+        aria-label='Go to previous page'
         className={styles.paginationBtn}
         disabled={isFirstPage}
         onClick={() => onPageChange(currentPage - 1)}
@@ -67,6 +68,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
           <span key={`${String(page)}-${String(index)}`}>...</span>
         ) : (
           <Button
+            aria-label={`Go to page ${String(page)}`}
             className={styles.paginationBtn}
             key={page}
             onClick={() => onPageChange(page)}
@@ -77,6 +79,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
         ),
       )}
       <Button
+        aria-label='Go to next page'
         className={styles.paginationBtn}
         disabled={isLastPage}
         onClick={() => onPageChange(currentPage + 1)}
