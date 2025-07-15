@@ -1,7 +1,11 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
+import { useCachedCharacters } from '@/characters/context/CachedCharactersContext/CachedCharactersContext'
 import { type Character } from '@/characters/types/Character'
 import { Button } from '@/shared/components/atoms/Button/Button'
+import { Pagination } from '@/shared/components/molecules/Pagination/Pagination'
 import { cn } from '@/shared/utils/cn'
 
 import { CharacterPreviewCard } from '../CharacterPreviewCard/CharacterPreviewCard'
@@ -9,10 +13,10 @@ import { CharacterPreviewCard } from '../CharacterPreviewCard/CharacterPreviewCa
 import styles from './CharactersSection.module.css'
 
 interface CharactersSectionProps {
-  characters: Character[]
   disabledCharacterIds?: Character['id'][]
   onSelectCharacter: (character: Character) => void
   selectedCharacterId: Character['id'] | null
+  title: string
 }
 
 const isCharacterDisabled = (
@@ -26,15 +30,41 @@ const isCharacterDisabled = (
 }
 
 export function CharactersSection({
-  characters,
   selectedCharacterId,
   onSelectCharacter,
   disabledCharacterIds = [],
+  title,
 }: CharactersSectionProps) {
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [characters, setCharacters] = useState<Character[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  const { fetchCharacters, totalPages } = useCachedCharacters()
+
+  const handlePageChange = async (page: number) => {
+    try {
+      setIsLoading(true)
+      const characters = await fetchCharacters(page)
+
+      setCharacters(characters)
+      setCurrentPage(page)
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    void handlePageChange(currentPage)
+  }, [])
+
   return (
-    <section>
-      <h2>Character #1</h2>
-      <div className={styles.charactersSection}>
+    <section className={styles.charactersSection}>
+      <h2>{title}</h2>
+      <div className={styles.charactersList}>
         {characters.map((character) => (
           <Button
             className={cn(
@@ -54,6 +84,11 @@ export function CharactersSection({
           </Button>
         ))}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        onPageChange={(page) => void handlePageChange(page)}
+        totalPages={totalPages}
+      />
     </section>
   )
 }

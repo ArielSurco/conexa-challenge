@@ -5,72 +5,47 @@ import { createContext, type ReactNode, useCallback, useContext, useMemo, useSta
 import { type Character } from '@/characters/types/Character'
 
 interface SelectedCharactersContextValue {
-  characters: Character[]
   cleanSelectedCharacters: () => void
-  getAllSelectedCharacterIds: () => Character['id'][]
   getSelectedCharacter: (from: string) => Character | null
   selectCharacter: (from: string, character: Character) => void
-  setCharacters: (characters: Character[]) => void
+  selectedCharacters: Record<string, Character>
 }
 
 interface SelectedCharactersProviderProps {
   children: ReactNode
-  initialCharacters: Character[]
 }
 
 const SelectedCharactersContext = createContext<SelectedCharactersContextValue | null>(null)
 
-const defaultSelectedCharacters: Record<string, Character['id']> = {}
+const defaultSelectedCharacters: Record<string, Character> = {}
 
-export const SelectedCharactersProvider = ({
-  children,
-  initialCharacters,
-}: SelectedCharactersProviderProps) => {
+export const SelectedCharactersProvider = ({ children }: SelectedCharactersProviderProps) => {
   const [selectedCharacters, setSelectedCharacters] =
-    useState<Record<string, Character['id']>>(defaultSelectedCharacters)
-
-  const [characters, setCharacters] = useState<Character[]>(initialCharacters)
+    useState<Record<string, Character>>(defaultSelectedCharacters)
 
   const selectCharacter = useCallback((from: string, character: Character) => {
-    setSelectedCharacters((prev) => ({ ...prev, [from]: character.id }))
+    setSelectedCharacters((prev) => ({ ...prev, [from]: character }))
   }, [])
 
   const getSelectedCharacter = useCallback(
     (from: string) => {
-      const characterId = selectedCharacters[from]
-
-      if (!characterId) return null
-
-      return characters.find((character) => character.id === characterId) ?? null
+      return selectedCharacters[from]
     },
-    [characters, selectedCharacters],
+    [selectedCharacters],
   )
 
   const cleanSelectedCharacters = useCallback(() => {
     setSelectedCharacters(defaultSelectedCharacters)
   }, [])
 
-  const getAllSelectedCharacterIds = useCallback(() => {
-    return Object.values(selectedCharacters)
-  }, [selectedCharacters])
-
   const contextValue = useMemo<SelectedCharactersContextValue>(
     () => ({
       getSelectedCharacter,
       selectCharacter,
       cleanSelectedCharacters,
-      characters,
-      setCharacters,
-      getAllSelectedCharacterIds,
+      selectedCharacters,
     }),
-    [
-      getSelectedCharacter,
-      selectCharacter,
-      cleanSelectedCharacters,
-      characters,
-      setCharacters,
-      getAllSelectedCharacterIds,
-    ],
+    [getSelectedCharacter, selectCharacter, cleanSelectedCharacters, selectedCharacters],
   )
 
   return (

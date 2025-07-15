@@ -35,6 +35,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
+  text-align: start;
 }
 
 .characterInfo_description {

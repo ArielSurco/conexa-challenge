@@ -9,6 +9,7 @@
 
   --color-surface: #f4f4f4;
   --color-on-surface: #1c1c1c;
+  --color-surface-hover: rgba(28, 28, 28, 0.08);
 
   --color-container: #ffffff;
   --color-on-container: #1c1c1c;
@@ -24,6 +25,7 @@
   :root {
     --color-surface: #0d0d0d;
     --color-on-surface: #eaeaea;
+    --color-surface-hover: rgba(234, 234, 234, 0.08);
 
     --color-container: #1b1f22;
     --color-on-container: #ffffff;

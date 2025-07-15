@@ -1,4 +1,5 @@
-import { getAllCharactersMockResponse } from '../serviceMocks/getAllCharactersMockResponse'
+import { ENV } from '@/shared/constants/env'
+
 import { type Character } from '../types/Character'
 
 interface GetAllCharactersInfo {
@@ -8,22 +9,17 @@ interface GetAllCharactersInfo {
   prev: string | null
 }
 
-interface GetAllCharactersParams {
-  page?: number
-  pageSize?: number
-}
-
 export interface GetAllCharactersResponse {
   info: GetAllCharactersInfo
   results: Character[]
 }
 
-export const getAllCharacters = (
-  _params: GetAllCharactersParams = { page: 1, pageSize: 20 },
-): Promise<GetAllCharactersResponse> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(getAllCharactersMockResponse)
-    }, 2000)
+export const getAllCharacters = async (page: number): Promise<GetAllCharactersResponse> => {
+  const response = await fetch(`${ENV.API_URL}/api/character?page=${String(page)}`, {
+    next: { revalidate: 0 },
   })
+
+  const data = response.json() as Promise<GetAllCharactersResponse>
+
+  return data
 }

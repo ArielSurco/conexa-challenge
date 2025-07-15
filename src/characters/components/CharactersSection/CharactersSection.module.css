@@ -1,4 +1,10 @@
 .charactersSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+}
+
+.charactersList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: var(--gap-md);
