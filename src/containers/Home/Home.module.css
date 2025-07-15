@@ -1,6 +1,19 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
 .charactersContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--gap-md);
+  width: 100%;
+}
+
+.episodesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: var(--gap-md);
   width: 100%;
 }
