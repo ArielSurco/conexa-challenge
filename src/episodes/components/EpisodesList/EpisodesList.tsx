@@ -1,4 +1,5 @@
 import { type Episode } from '@/episodes/types/Episode'
+import { Card } from '@/shared/components/atoms/Card/Card'
 
 import styles from './EpisodesList.module.css'
 
@@ -12,10 +13,10 @@ export const EpisodesList = ({ title, episodes }: EpisodesListProps) => {
     <section className={styles.episodesList}>
       <h2 className={styles.episodesListTitle}>{title}</h2>
       {episodes.map((episode) => (
-        <div key={episode.id}>
+        <Card key={episode.id}>
           <h3>{episode.name}</h3>
           <p>{episode.air_date}</p>
-        </div>
+        </Card>
       ))}
     </section>
   )

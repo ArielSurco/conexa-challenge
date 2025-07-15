@@ -2,9 +2,12 @@ import Image from 'next/image'
 import { type ComponentProps } from 'react'
 
 import { type Character } from '@/characters/types/Character'
+import { Card } from '@/shared/components/atoms/Card/Card'
 import { StatusPoint } from '@/shared/components/atoms/StatusPoint/StatusPoint'
+import { Title } from '@/shared/components/atoms/Title/Title'
 import { capitalize } from '@/shared/utils/capitalize'
 import { cn } from '@/shared/utils/cn'
+
 
 import styles from './CharacterPreviewCard.module.css'
 
@@ -24,7 +27,7 @@ export function CharacterPreviewCard({
   ...props
 }: CharacterPreviewCardProps) {
   return (
-    <article className={cn(styles.characterCard, className)} {...props}>
+    <Card className={cn(styles.characterCard, className)} {...props}>
       <Image
         alt={character.name}
         className={styles.characterImage}
@@ -33,7 +36,10 @@ export function CharacterPreviewCard({
         width={200}
       />
       <div className={styles.characterInfo}>
-        <h3 className={styles.characterInfo_name}>{capitalize(character.name)}</h3>
+        <Title fontSize='1.25rem' headingLevel='h3' truncate>
+          {capitalize(character.name)}
+        </Title>
+
         <div className={styles.characterInfo_description}>
           <p className={styles.characterInfo_description__status}>
             <StatusPoint color={statusPointColors[character.status]} size='12px' />
@@ -43,6 +49,6 @@ export function CharacterPreviewCard({
           <p>{capitalize(character.species)}</p>
         </div>
       </div>
-    </article>
+    </Card>
   )
 }

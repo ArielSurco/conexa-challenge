@@ -1,0 +1,15 @@
+.title {
+  --title-font-size: 1.5rem;
+  --title-alignment: start;
+
+  font-size: var(--title-font-size);
+  font-weight: 600;
+  text-align: var(--title-alignment);
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
