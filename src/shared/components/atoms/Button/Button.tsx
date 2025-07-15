@@ -7,10 +7,10 @@ import { cn } from '@/shared/utils/cn'
 import styles from './Button.module.css'
 
 interface ButtonProps extends ComponentProps<'button'> {
-  variant?: 'unstyled' | 'primary'
+  variant: 'unstyled' | 'ghost'
 }
 
-export function Button({ variant = 'primary', children, className, ...props }: ButtonProps) {
+export function Button({ variant, children, className, ...props }: ButtonProps) {
   return (
     <button className={cn(styles.button, styles[`variant_${variant}`], className)} {...props}>
       {children}

@@ -2,8 +2,18 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  border-radius: var(--radius-md);
 }
 
 .variant_unstyled {
   background-color: transparent;
+}
+
+.variant_ghost {
+  background-color: transparent;
+  color: var(--on-surface);
+}
+
+.variant_ghost:hover {
+  background-color: var(--color-surface-hover);
 }
