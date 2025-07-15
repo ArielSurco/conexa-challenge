@@ -4,14 +4,12 @@
 
   display: grid;
   grid-template-columns: var(--image-width) 1fr;
-  gap: 12px;
+  gap: var(--gap-md);
   height: var(--card-height);
-  border-radius: var(--radius-md);
   overflow: hidden;
   min-width: var(--image-width);
   width: 100%;
-  background-color: var(--color-container);
-  color: var(--color-on-container);
+  padding: 0;
 }
 
 .characterImage {
@@ -26,16 +24,6 @@
   min-width: 0;
   padding: 8px;
   gap: 12px;
-}
-
-.characterInfo_name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
-  text-align: start;
 }
 
 .characterInfo_description {
