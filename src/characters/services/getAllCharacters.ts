@@ -15,9 +15,7 @@ export interface GetAllCharactersResponse {
 }
 
 export const getAllCharacters = async (page: number): Promise<GetAllCharactersResponse> => {
-  const response = await fetch(`${ENV.API_URL}/api/character?page=${String(page)}`, {
-    next: { revalidate: 0 },
-  })
+  const response = await fetch(`${ENV.API_URL}/api/character?page=${String(page)}`)
 
   const data = response.json() as Promise<GetAllCharactersResponse>
 
