@@ -1,11 +1,10 @@
+import { type ComponentProps } from 'react'
+
 import { cn } from '@/shared/utils/cn'
-import { ComponentProps } from 'react'
 
 import styles from './Card.module.css'
 
-interface CardProps extends ComponentProps<'article'> {}
-
-export const Card = ({ className, children, ...props }: CardProps) => {
+export const Card = ({ className, children, ...props }: ComponentProps<'article'>) => {
   return (
     <article className={cn(styles.card, className)} {...props}>
       {children}

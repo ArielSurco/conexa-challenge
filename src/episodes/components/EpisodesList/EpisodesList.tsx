@@ -1,6 +1,6 @@
 import { type Episode } from '@/episodes/types/Episode'
-
 import { Card } from '@/shared/components/atoms/Card/Card'
+
 import styles from './EpisodesList.module.css'
 
 interface EpisodesListProps {

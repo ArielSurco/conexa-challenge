@@ -2,12 +2,13 @@ import Image from 'next/image'
 import { type ComponentProps } from 'react'
 
 import { type Character } from '@/characters/types/Character'
+import { Card } from '@/shared/components/atoms/Card/Card'
 import { StatusPoint } from '@/shared/components/atoms/StatusPoint/StatusPoint'
+import { Title } from '@/shared/components/atoms/Title/Title'
 import { capitalize } from '@/shared/utils/capitalize'
 import { cn } from '@/shared/utils/cn'
 
-import { Card } from '@/shared/components/atoms/Card/Card'
-import { Title } from '@/shared/components/atoms/Title/Title'
+
 import styles from './CharacterPreviewCard.module.css'
 
 interface CharacterPreviewCardProps extends ComponentProps<'article'> {
@@ -35,7 +36,7 @@ export function CharacterPreviewCard({
         width={200}
       />
       <div className={styles.characterInfo}>
-        <Title headingLevel='h3' fontSize='1.25rem' truncate>
+        <Title fontSize='1.25rem' headingLevel='h3' truncate>
           {capitalize(character.name)}
         </Title>
 

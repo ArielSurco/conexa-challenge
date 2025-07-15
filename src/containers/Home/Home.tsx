@@ -6,8 +6,8 @@ import { CharactersSection } from '@/characters/components/CharactersSection/Cha
 import { useSelectedCharacters } from '@/characters/context/SelectedCharactersContext/SelectedCharactersContext'
 import { EpisodesList } from '@/episodes/components/EpisodesList/EpisodesList'
 import { useCharactersEpisodes } from '@/episodes/hooks/useCharactersEpisodes/useCharactersEpisodes'
-
 import { Title } from '@/shared/components/atoms/Title/Title'
+
 import styles from './Home.module.css'
 import { mapSelectedCharactersByEpisodesIds } from './homeUtils'
 
@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <div className={styles.homeContainer}>
-      <Title headingLevel='h1' fontSize='2rem'>
+      <Title fontSize='2rem' headingLevel='h1'>
         Conexa Challenge
       </Title>
       <div className={styles.charactersContainer}>
