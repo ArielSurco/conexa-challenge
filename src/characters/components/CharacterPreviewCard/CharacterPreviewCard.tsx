@@ -8,7 +8,6 @@ import { Title } from '@/shared/components/atoms/Title/Title'
 import { capitalize } from '@/shared/utils/capitalize'
 import { cn } from '@/shared/utils/cn'
 
-
 import styles from './CharacterPreviewCard.module.css'
 
 interface CharacterPreviewCardProps extends ComponentProps<'article'> {
