@@ -18,9 +18,11 @@ export const EpisodesList = ({ title, episodes, id }: EpisodesListProps) => {
       <Title fontSize='1.5rem' headingLevel='h2'>
         {title}
       </Title>
-      {episodes.map((episode) => (
-        <EpisodeCard episode={episode} key={episode.id} />
-      ))}
+      {episodes.length > 0 ? (
+        episodes.map((episode) => <EpisodeCard episode={episode} key={episode.id} />)
+      ) : (
+        <p>No episodes found</p>
+      )}
     </section>
   )
 }
