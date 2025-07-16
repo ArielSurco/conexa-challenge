@@ -9,7 +9,7 @@ const skeletonsArray = Array.from({ length: NUMBER_OF_SKELETON_CARDS }, (_, inde
 
 export const CharactersSectionListSkeletonTemplate = () => {
   return (
-    <div className={styles.charactersList}>
+    <div className={styles.charactersList} data-testid='characters-section-skeleton'>
       {skeletonsArray.map((index) => (
         <CharacterPreviewCardSkeleton isLoading key={index} />
       ))}

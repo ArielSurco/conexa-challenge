@@ -82,6 +82,7 @@ export function CharactersSection({
               key={character.id}
               onClick={() => onSelectCharacter(character)}
               variant='unstyled'
+              aria-label={`Select ${character.name}`}
             >
               <CharacterPreviewCard
                 character={character}
