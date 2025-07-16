@@ -31,7 +31,7 @@ export default function Home() {
     [selectedCharacters],
   )
 
-  const { getEpisodesByCharacterId } = useCharactersEpisodes({
+  const { getEpisodesByCharacterId, isLoading: isLoadingEpisodes } = useCharactersEpisodes({
     episodesIdsByCharacterId,
   })
 
@@ -53,6 +53,7 @@ export default function Home() {
   ) => {
     selectCharacter(sectionId, character)
 
+    // Focus on the next section based on selection
     const interpolator = {
       [SELECT_CHARACTER_SECTIONS.first]: SELECT_CHARACTER_SECTIONS.second,
       [SELECT_CHARACTER_SECTIONS.second]: SELECT_CHARACTER_SECTIONS.first,
@@ -95,16 +96,19 @@ export default function Home() {
           <EpisodesList
             episodes={character1Episodes}
             id='character-1-episodes'
+            isLoading={isLoadingEpisodes}
             title='Character #1 - Only Episodes'
           />
           <EpisodesList
             episodes={intersectionEpisodes}
             id='shared-episodes'
+            isLoading={isLoadingEpisodes}
             title='Characters #1 & #2 - Shared Episodes'
           />
           <EpisodesList
             episodes={character2Episodes}
             id='character-2-episodes'
+            isLoading={isLoadingEpisodes}
             title='Character #2 - Only Episodes'
           />
         </div>

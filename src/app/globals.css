@@ -21,6 +21,9 @@
 
   --color-secondary: #0075c9;
   --on-secondary: #ffffff;
+
+  --skeleton-bg-color: #e0e0e0;
+  --skeleton-highlight-color: #f5f5f5;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,6 +41,9 @@
 
     --color-secondary: #00b2ff;
     --color-on-secondary: #001c2e;
+
+    --skeleton-bg-color: #1e1e1e;
+    --skeleton-highlight-color: #2c2c2c;
   }
 }
 
@@ -54,6 +60,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body:has([data-global-loading]) {
+  background-color: #1b1f22;
+  overflow: hidden;
 }
 
 * {
