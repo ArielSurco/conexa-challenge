@@ -8,8 +8,6 @@ const INITIAL_PAGE = 1
 export default async function Page() {
   const charactersResponse = await getAllCharacters(INITIAL_PAGE)
 
-  await new Promise((resolve) => setTimeout(resolve, 10000))
-
   return (
     <CachedCharactersContextProvider
       initialCharacters={charactersResponse.results}

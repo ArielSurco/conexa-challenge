@@ -5,6 +5,7 @@ import { type ComponentProps, useEffect, useState } from 'react'
 import { useCachedCharacters } from '@/characters/context/CachedCharactersContext/CachedCharactersContext'
 import { type Character } from '@/characters/types/Character'
 import { Button } from '@/shared/components/atoms/Button/Button'
+import { Skeleton } from '@/shared/components/atoms/Skeleton/Skeleton'
 import { Title } from '@/shared/components/atoms/Title/Title'
 import { Pagination } from '@/shared/components/molecules/Pagination/Pagination'
 import { cn } from '@/shared/utils/cn'
@@ -12,6 +13,7 @@ import { cn } from '@/shared/utils/cn'
 import { CharacterPreviewCard } from '../CharacterPreviewCard/CharacterPreviewCard'
 
 import styles from './CharactersSection.module.css'
+import { CharactersSectionListSkeletonTemplate } from './CharactersSectionListSkeletonTemplate'
 
 interface CharactersSectionProps extends Pick<ComponentProps<'section'>, 'id'> {
   disabledCharacterIds?: Character['id'][]
@@ -39,7 +41,6 @@ export function CharactersSection({
 }: CharactersSectionProps) {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [characters, setCharacters] = useState<Character[]>([])
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const { fetchCharacters, totalPages } = useCachedCharacters()
@@ -68,26 +69,28 @@ export function CharactersSection({
       <Title fontSize='1.5rem' headingLevel='h2'>
         {title}
       </Title>
-      <div className={styles.charactersList}>
-        {characters.map((character) => (
-          <Button
-            className={cn(
-              isCharacterDisabled(character, disabledCharacterIds, selectedCharacterId) &&
-                styles.disabledCharacter,
-            )}
-            disabled={isCharacterDisabled(character, disabledCharacterIds, selectedCharacterId)}
-            key={character.id}
-            onClick={() => onSelectCharacter(character)}
-            variant='unstyled'
-          >
-            <CharacterPreviewCard
-              character={character}
-              className={cn(selectedCharacterId === character.id && styles.selectedCard)}
+      <Skeleton isLoading={isLoading} template={<CharactersSectionListSkeletonTemplate />}>
+        <div className={styles.charactersList}>
+          {characters.map((character) => (
+            <Button
+              className={cn(
+                isCharacterDisabled(character, disabledCharacterIds, selectedCharacterId) &&
+                  styles.disabledCharacter,
+              )}
+              disabled={isCharacterDisabled(character, disabledCharacterIds, selectedCharacterId)}
               key={character.id}
-            />
-          </Button>
-        ))}
-      </div>
+              onClick={() => onSelectCharacter(character)}
+              variant='unstyled'
+            >
+              <CharacterPreviewCard
+                character={character}
+                className={cn(selectedCharacterId === character.id && styles.selectedCard)}
+                key={character.id}
+              />
+            </Button>
+          ))}
+        </div>
+      </Skeleton>
       <Pagination
         currentPage={currentPage}
         onPageChange={(page) => void handlePageChange(page)}
