@@ -19,7 +19,7 @@ describe('EpisodesList', () => {
   })
 
   it('should render a skeleton if isLoading is true', () => {
-    render(<EpisodesList episodes={[]} title='Episodes' isLoading />)
+    render(<EpisodesList episodes={[]} isLoading title='Episodes' />)
 
     expect(screen.getByTestId('episode-card-skeleton')).toBeInTheDocument()
   })
