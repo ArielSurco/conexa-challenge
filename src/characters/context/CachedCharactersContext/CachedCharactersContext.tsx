@@ -11,7 +11,7 @@ interface CachedCharactersContextValue {
   totalPages: number
 }
 
-interface CachedCharactersContextProviderProps {
+interface CachedCharactersProviderProps {
   children: ReactNode
   initialCharacters: Character[]
   initialPage: number
@@ -20,7 +20,7 @@ interface CachedCharactersContextProviderProps {
 
 const CachedCharactersContext = createContext<CachedCharactersContextValue | null>(null)
 
-export const CachedCharactersContextProvider = ({
+export const CachedCharactersProvider = ({
   children,
   initialPage,
   initialCharacters,

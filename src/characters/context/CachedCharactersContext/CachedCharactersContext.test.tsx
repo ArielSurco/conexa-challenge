@@ -3,7 +3,7 @@ import { act, renderHook } from '@testing-library/react'
 import { mockCharacter } from '@/characters/testMocks/characterMock'
 import { type Character } from '@/characters/types/Character'
 
-import { CachedCharactersContextProvider, useCachedCharacters } from './CachedCharactersContext'
+import { CachedCharactersProvider, useCachedCharacters } from './CachedCharactersContext'
 
 jest.mock('@/shared/hooks/useCachedPagination/useCachedPagination', () => ({
   useCachedPagination: jest.fn().mockReturnValue({
@@ -30,13 +30,13 @@ describe('CachedCharactersContext', () => {
 
     const { result } = renderHook(() => useCachedCharacters(), {
       wrapper: ({ children }) => (
-        <CachedCharactersContextProvider
+        <CachedCharactersProvider
           initialCharacters={[customMockCharacter]}
           initialPage={1}
           initialTotalPages={1}
         >
           {children}
-        </CachedCharactersContextProvider>
+        </CachedCharactersProvider>
       ),
     })
 
