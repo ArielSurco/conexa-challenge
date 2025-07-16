@@ -53,6 +53,7 @@ export function CharactersSection({
       setCharacters(characters)
       setCurrentPage(page)
     } catch (error) {
+      // ? Maybe I should handle by an alert or something but because of time I'm just expecting to not have errors LOL
       // eslint-disable-next-line no-console
       console.error(error)
     } finally {
