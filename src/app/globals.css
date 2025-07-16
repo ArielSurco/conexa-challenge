@@ -56,6 +56,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body:has([data-global-loading]) {
+  background-color: #1b1f22;
+  overflow: hidden;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
