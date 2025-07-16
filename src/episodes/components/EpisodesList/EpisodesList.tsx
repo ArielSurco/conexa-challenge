@@ -5,9 +5,9 @@ import { Skeleton, type SkeletonProps } from '@/shared/components/atoms/Skeleton
 import { Title } from '@/shared/components/atoms/Title/Title'
 
 import { EpisodeCard } from '../EpisodeCard/EpisodeCard'
+import { EpisodeCardSkeleton } from '../EpisodeCard/EpisodeCardSkeleton'
 
 import styles from './EpisodesList.module.css'
-import { EpisodesListSkeletonTemplate } from './EpisodesListSkeletonTemplate'
 
 interface EpisodesListProps
   extends Pick<ComponentProps<'section'>, 'id'>,
@@ -22,7 +22,7 @@ export const EpisodesList = ({ title, episodes, id, isLoading = false }: Episode
       <Title fontSize='1.5rem' headingLevel='h2'>
         {title}
       </Title>
-      <Skeleton isLoading={isLoading} template={<EpisodesListSkeletonTemplate />}>
+      <Skeleton isLoading={isLoading} template={<EpisodeCardSkeleton isLoading />}>
         {episodes.length > 0 ? (
           episodes.map((episode) => <EpisodeCard episode={episode} key={episode.id} />)
         ) : (
