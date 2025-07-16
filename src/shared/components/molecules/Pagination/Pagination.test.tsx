@@ -31,7 +31,8 @@ describe('Pagination', () => {
     expect(previousPageButton).toBeInTheDocument()
   })
 
-  it(`should render just one "..." symbol if there are more than ${MAX_VISIBLE_PAGES} pages and user is in the first/last pages`, () => {
+  // I wish I could use the MAX_VISIBLE_PAGES for this string but the build failed :(
+  it(`should render just one "..." symbol if there are more than 5 pages and user is in the first/last pages`, () => {
     const { rerender } = render(
       <Pagination currentPage={1} onPageChange={jest.fn()} totalPages={MAX_VISIBLE_PAGES} />,
     )
@@ -45,7 +46,8 @@ describe('Pagination', () => {
     expect(screen.getAllByText('...')).toHaveLength(1)
   })
 
-  it(`it should render two "..." symbols if there are more than ${MAX_VISIBLE_PAGES + 2 * SIDE_PAGES_AROUND_CURRENT_PAGE} pages and user is in the middle of the pages`, () => {
+  // I wish I could use the MAX_VISIBLE_PAGES and SIDE_PAGES_AROUND_CURRENT_PAGE for this string but the build failed :(
+  it(`it should render two "..." symbols if there are more than 9 pages and user is in the middle of the pages`, () => {
     const LIMIT_BEFORE_SPREAD_SYMBOLS = MAX_VISIBLE_PAGES + 2 * SIDE_PAGES_AROUND_CURRENT_PAGE
 
     const { rerender } = render(
