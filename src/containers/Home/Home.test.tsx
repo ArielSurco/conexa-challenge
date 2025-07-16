@@ -21,6 +21,17 @@ jest.mock('@/characters/context/SelectedCharactersContext/SelectedCharactersCont
   }),
 }))
 
+jest.mock('@/episodes/services/getEpisodesByIds', () => ({
+  getEpisodesByIds: jest.fn().mockResolvedValue([]),
+}))
+
+jest.mock('@/episodes/hooks/useCharactersEpisodes/useCharactersEpisodes', () => ({
+  useCharactersEpisodes: jest.fn().mockReturnValue({
+    getEpisodesByCharacterId: jest.fn().mockReturnValue([]),
+    isLoading: false,
+  }),
+}))
+
 const mockUseSelectedCharacters = jest.mocked(useSelectedCharacters)
 
 describe('Home', () => {
@@ -62,16 +73,18 @@ describe('Home', () => {
       },
     })
 
-    render(<Home />, {
-      wrapper: ({ children }) => (
-        <CachedCharactersProvider
-          initialCharacters={[customMockCharacter, customMockCharacter2]}
-          initialPage={1}
-          initialTotalPages={1}
-        >
-          <SelectedCharactersProvider>{children}</SelectedCharactersProvider>
-        </CachedCharactersProvider>
-      ),
+    await act(async () => {
+      render(<Home />, {
+        wrapper: ({ children }) => (
+          <CachedCharactersProvider
+            initialCharacters={[customMockCharacter, customMockCharacter2]}
+            initialPage={1}
+            initialTotalPages={1}
+          >
+            <SelectedCharactersProvider>{children}</SelectedCharactersProvider>
+          </CachedCharactersProvider>
+        ),
+      })
     })
 
     expect(screen.getByText('Character #1 - Only Episodes')).toBeInTheDocument()

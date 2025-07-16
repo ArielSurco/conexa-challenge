@@ -25,7 +25,7 @@ export const CachedCharactersProvider = ({
   initialPage,
   initialCharacters,
   initialTotalPages,
-}: CachedCharactersContextProviderProps) => {
+}: CachedCharactersProviderProps) => {
   const { cachedFetchData } = useCachedPagination({
     fetchData: (page) => getAllCharacters(page),
     getResults: (response) => response.results,
