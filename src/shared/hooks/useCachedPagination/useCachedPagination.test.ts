@@ -30,6 +30,7 @@ describe('useCachedPagination', () => {
 
     expect(data).toEqual(mockResponseFetchData)
     expect(cachedData.current.get(2)).toEqual(mockResponseFetchData)
+    expect(getResults).toHaveBeenCalledWith({ data: mockResponseFetchData })
     expect(fetchData).toHaveBeenCalledWith(2)
 
     jest.clearAllMocks()
@@ -38,6 +39,7 @@ describe('useCachedPagination', () => {
 
     expect(samePageData).toEqual(mockResponseFetchData)
     expect(cachedData.current.get(2)).toEqual(mockResponseFetchData)
+    expect(getResults).not.toHaveBeenCalled()
     expect(fetchData).not.toHaveBeenCalled()
   })
 
