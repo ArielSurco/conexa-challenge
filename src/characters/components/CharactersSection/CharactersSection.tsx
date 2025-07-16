@@ -53,7 +53,7 @@ export function CharactersSection({
       setCharacters(characters)
       setCurrentPage(page)
     } catch (error) {
-      // ? Maybe I should handle by an alert or something but because of time I'm just expecting to not have errors LOL
+      // ? Maybe I should handle by an alert or something but because of time I'm just expecting to not have errors
       // eslint-disable-next-line no-console
       console.error(error)
     } finally {
@@ -74,6 +74,7 @@ export function CharactersSection({
         <div className={styles.charactersList}>
           {characters.map((character) => (
             <Button
+              aria-label={`Select ${character.name}`}
               className={cn(
                 isCharacterDisabled(character, disabledCharacterIds, selectedCharacterId) &&
                   styles.disabledCharacter,

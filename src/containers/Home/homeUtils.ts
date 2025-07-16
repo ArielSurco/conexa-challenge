@@ -1,7 +1,8 @@
 import { type Character } from '@/characters/types/Character'
+import { type Episode } from '@/episodes/types/Episode'
 
 // ? We expect the format https://rickandmortyapi.com/api/episode/1
-const getEpisodeIdByUrl = (url: string) => {
+export const getEpisodeIdByUrl = (url: string) => {
   const episodeId = url.split('/').pop()
 
   return Number(episodeId)
@@ -26,4 +27,13 @@ export const mapSelectedCharactersByEpisodesIds = (
   })
 
   return mappedEpisodesIdsByCharacterId
+}
+
+export const getIntersectionEpisodes = (
+  character1Episodes: Episode[],
+  character2Episodes: Episode[],
+) => {
+  return character1Episodes.filter((character1Episode) =>
+    character2Episodes.some((character2Episode) => character2Episode.id === character1Episode.id),
+  )
 }

@@ -5,7 +5,6 @@ import { createContext, type ReactNode, useCallback, useContext, useMemo, useSta
 import { type Character } from '@/characters/types/Character'
 
 interface SelectedCharactersContextValue {
-  cleanSelectedCharacters: () => void
   getSelectedCharacter: (from: string) => Character | null
   selectCharacter: (from: string, character: Character) => void
   selectedCharacters: Record<string, Character>
@@ -34,18 +33,13 @@ export const SelectedCharactersProvider = ({ children }: SelectedCharactersProvi
     [selectedCharacters],
   )
 
-  const cleanSelectedCharacters = useCallback(() => {
-    setSelectedCharacters(defaultSelectedCharacters)
-  }, [])
-
   const contextValue = useMemo<SelectedCharactersContextValue>(
     () => ({
       getSelectedCharacter,
       selectCharacter,
-      cleanSelectedCharacters,
       selectedCharacters,
     }),
-    [getSelectedCharacter, selectCharacter, cleanSelectedCharacters, selectedCharacters],
+    [getSelectedCharacter, selectCharacter, selectedCharacters],
   )
 
   return (

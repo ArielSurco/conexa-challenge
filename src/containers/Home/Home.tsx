@@ -11,9 +11,9 @@ import { useCharactersEpisodes } from '@/episodes/hooks/useCharactersEpisodes/us
 import { Title } from '@/shared/components/atoms/Title/Title'
 
 import styles from './Home.module.css'
-import { mapSelectedCharactersByEpisodesIds } from './homeUtils'
+import { getIntersectionEpisodes, mapSelectedCharactersByEpisodesIds } from './homeUtils'
 
-const SELECT_CHARACTER_SECTIONS = {
+export const SELECT_CHARACTER_SECTIONS = {
   first: 'character-1',
   second: 'character-2',
 }
@@ -42,10 +42,6 @@ export default function Home() {
   const character2Episodes = useMemo(() => {
     return getEpisodesByCharacterId(String(getSelectedCharacter('character-2')?.id))
   }, [getEpisodesByCharacterId, getSelectedCharacter])
-
-  const intersectionEpisodes = useMemo(() => {
-    return character1Episodes.filter((episode) => character2Episodes.includes(episode))
-  }, [character1Episodes, character2Episodes])
 
   const handleSelectCharacter = (
     character: Character,
@@ -100,7 +96,7 @@ export default function Home() {
             title='Character #1 - Only Episodes'
           />
           <EpisodesList
-            episodes={intersectionEpisodes}
+            episodes={getIntersectionEpisodes(character1Episodes, character2Episodes)}
             id='shared-episodes'
             isLoading={isLoadingEpisodes}
             title='Characters #1 & #2 - Shared Episodes'
