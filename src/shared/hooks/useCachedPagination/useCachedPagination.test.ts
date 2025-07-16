@@ -64,4 +64,25 @@ describe('useCachedPagination', () => {
     expect(cachedData.current.get(1)).toEqual([mockCharacter])
     expect(fetchData).not.toHaveBeenCalled()
   })
+
+  it('should update cached data when fetchData is called', async () => {
+    const fetchData = jest.fn().mockResolvedValue({ data: mockCharacter })
+    const getResults = jest.fn().mockReturnValue(mockCharacter)
+    const initialData = { page: 1, data: [] }
+
+    const { result } = renderHook(() =>
+      useCachedPagination({
+        fetchData,
+        getResults,
+        initialData,
+      }),
+    )
+
+    const { cachedData, cachedFetchData } = result.current
+
+    const data = await cachedFetchData(2)
+
+    expect(data).toEqual(mockCharacter)
+    expect(cachedData.current.get(2)).toEqual(mockCharacter)
+  })
 })
