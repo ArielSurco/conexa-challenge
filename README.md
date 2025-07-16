@@ -1,6 +1,6 @@
 # Overview
 
-Este proyecto fue desarrollado para el challenge de Conexa, integrando la [API de Rick & Morti](https://rickandmortyapi.com/documentation/#rest) incluyendo las siguientes funcionalidades. Actualmente está desplegado en Vercel y usando un dominio propio en: https://conexa-challenge.arielsurco.dev/
+Este proyecto fue desarrollado para el challenge de Conexa, integrando la [API de Rick & Morti](https://rickandmortyapi.com/documentation/#rest). Actualmente está desplegado en Vercel y usando un dominio propio en: https://conexa-challenge.arielsurco.dev/
 
 ## Funcionalidades solicitadas
 
@@ -86,3 +86,7 @@ npm run dev
 
 > **! Importante**
 > Es necesario agregar un archivo `.env` con el valor de la URL de la API, dado que esto lo manejo como secretos, revisar el ejemplo en `.env.example`
+
+## Notas finales
+
+Me hubiera gustado agregar más features como un buscador por nombre de personaje en cada sección que además utilice un debounce para optimizar requests mientras le daba al usuario una forma más amigable de buscar sus personajes favoritos. Sin embargo, por cuestiones de tiempo lo voy a dejar hasta acá
