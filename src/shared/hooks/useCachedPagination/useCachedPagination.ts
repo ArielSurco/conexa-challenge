@@ -9,6 +9,8 @@ interface UseCachedPaginationParams<Response, Data> {
   }
 }
 
+// ? Suggest for my future self: Add invalidation strategy or use React Query directly
+// ? This time was just because the Rick&Morty API will always return the same data for the same page
 export const useCachedPagination = <Response, Data>(
   params: UseCachedPaginationParams<Response, Data>,
 ) => {
