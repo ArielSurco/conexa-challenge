@@ -13,3 +13,8 @@
   border-radius: 50%;
   font-weight: 600;
 }
+
+.paginationBtnActive {
+  background-color: var(--color-surface-active);
+  color: var(--color-on-surface);
+}

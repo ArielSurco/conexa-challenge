@@ -2,6 +2,8 @@
 
 import { useMemo } from 'react'
 
+import { cn } from '@/shared/utils/cn'
+
 import { Button } from '../../atoms/Button/Button'
 
 import styles from './Pagination.module.css'
@@ -69,7 +71,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
         ) : (
           <Button
             aria-label={`Go to page ${String(page)}`}
-            className={styles.paginationBtn}
+            className={cn(styles.paginationBtn, page === currentPage && styles.paginationBtnActive)}
             key={page}
             onClick={() => onPageChange(page)}
             variant='ghost'
