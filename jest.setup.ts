@@ -2,6 +2,9 @@ import React, { type ComponentProps } from 'react'
 
 import '@testing-library/jest-dom'
 
+// Add fetch polyfill for tests
+global.fetch = jest.fn()
+
 jest.mock('next/navigation', () => ({
   useRouter() {
     return {
