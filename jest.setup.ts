@@ -2,7 +2,6 @@ import React, { type ComponentProps } from 'react'
 
 import '@testing-library/jest-dom'
 
-// Mock Next.js router
 jest.mock('next/navigation', () => ({
   useRouter() {
     return {
@@ -22,7 +21,6 @@ jest.mock('next/navigation', () => ({
   },
 }))
 
-// Mock Next.js image component
 jest.mock('next/image', () => ({
   __esModule: true,
   default: (props: ComponentProps<'img'>) => {
@@ -30,13 +28,10 @@ jest.mock('next/image', () => ({
   },
 }))
 
-// Mock CSS modules
 jest.mock('*.module.css', () => ({}))
 jest.mock('*.module.scss', () => ({}))
 jest.mock('*.module.sass', () => ({}))
 
-// Global test setup
 beforeEach(() => {
-  // Clear all mocks before each test
   jest.clearAllMocks()
 })

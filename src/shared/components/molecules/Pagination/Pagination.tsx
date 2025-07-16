@@ -14,8 +14,8 @@ interface PaginationProps {
   totalPages: number
 }
 
-const MAX_VISIBLE_PAGES = 5
-const SIDE_PAGES_AROUND_CURRENT_PAGE = 2
+export const MAX_VISIBLE_PAGES = 5
+export const SIDE_PAGES_AROUND_CURRENT_PAGE = 2
 
 export const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
   const visiblePages = useMemo<(number | '...')[]>(() => {
@@ -56,15 +56,17 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
 
   return (
     <div className={styles.pagination}>
-      <Button
-        aria-label='Go to previous page'
-        className={styles.paginationBtn}
-        disabled={isFirstPage}
-        onClick={() => onPageChange(currentPage - 1)}
-        variant='ghost'
-      >
-        &lt;
-      </Button>
+      {!isFirstPage && (
+        <Button
+          aria-label='Go to previous page'
+          className={styles.paginationBtn}
+          disabled={isFirstPage}
+          onClick={() => onPageChange(currentPage - 1)}
+          variant='ghost'
+        >
+          &lt;
+        </Button>
+      )}
       {visiblePages.map((page, index) =>
         page === '...' ? (
           <span key={`${String(page)}-${String(index)}`}>...</span>
@@ -80,15 +82,17 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
           </Button>
         ),
       )}
-      <Button
-        aria-label='Go to next page'
-        className={styles.paginationBtn}
-        disabled={isLastPage}
-        onClick={() => onPageChange(currentPage + 1)}
-        variant='ghost'
-      >
-        &gt;
-      </Button>
+      {!isLastPage && (
+        <Button
+          aria-label='Go to next page'
+          className={styles.paginationBtn}
+          disabled={isLastPage}
+          onClick={() => onPageChange(currentPage + 1)}
+          variant='ghost'
+        >
+          &gt;
+        </Button>
+      )}
     </div>
   )
 }
