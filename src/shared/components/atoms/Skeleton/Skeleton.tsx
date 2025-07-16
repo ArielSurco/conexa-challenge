@@ -15,7 +15,7 @@ export const Skeleton = ({
   className,
   children,
   height,
-  isLoading = true,
+  isLoading,
   width,
   template,
   ...props
