@@ -53,6 +53,7 @@ export default function Home() {
   ) => {
     selectCharacter(sectionId, character)
 
+    // Focus on the next section based on selection
     const interpolator = {
       [SELECT_CHARACTER_SECTIONS.first]: SELECT_CHARACTER_SECTIONS.second,
       [SELECT_CHARACTER_SECTIONS.second]: SELECT_CHARACTER_SECTIONS.first,
